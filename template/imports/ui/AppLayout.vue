@@ -1,128 +1,110 @@
-<template name="appLayout">
-
-    <!-- be careful when you change the 'view' prop, check the layout docs -->
-    <!--  LHr lpR lfr - with class="fixed-bottom" on the footer seems to be the only possibility
-        that works both for desktop and mobile -->
-
-    <q-layout ref="layout" view="LHr lpR lFr">
-
-        <q-layout-header>
-            <q-toolbar color='dark'>
-                <q-btn
-                        flat
-                        @click="showLeft = !showLeft"
-                        icon="menu"
-                        no-ripple
-                />
-
-                <q-toolbar-title>
-                    time to tear this motherfucker up
-                    <!--<span slot="subtitle">Optional subtitle</span>-->
-                </q-toolbar-title>
-
-                <!-- showRight is a model attached to right side drawer below -->
-                <q-btn
-                        flat 
-                        @click="showRight = !showRight"
-                        icon="menu"
-                        no-ripple
-                />
-            </q-toolbar>
-            <q-tabs color='dark'>
-                <q-route-tab slot="title" icon="save" to="/" replace label="PubSub" />
-                <q-route-tab slot="title" icon="alarm" to="/session" replace label="Session" />
-                <q-route-tab slot="title" icon="help" to="/help" replace label="Help" />
-            </q-tabs>
-        </q-layout-header>
-
-        <q-layout-drawer side="left" v-model="showLeft" overlay=true>
-            <q-list no-border link inset-separator>
-                <q-list-header>Essential Links</q-list-header>
-                <q-item to="/">
-                    <q-item-side icon="save" />
-                    <q-item-main label="PubSub" />
-                </q-item>
-                <q-item to="/session">
-                    <q-item-side icon="alarm" />
-                    <q-item-main label="Session" />
-                </q-item>
-                <q-item to="/help">
-                    <q-item-side icon="help" />
-                    <q-item-main label="Help" />
-                </q-item>
-            </q-list>
-        </q-layout-drawer>
-
-        <q-layout-drawer side="right" v-model="showRight" overlay=true>
-            <span>Right Side of Layout</span>
-        </q-layout-drawer>
-
-        <q-page-container>
-            <router-view></router-view>
-        </q-page-container>
-
-        <q-layout-footer>
-            <q-toolbar color='dark'>
-                <q-toolbar-title>
-                    <span slot='subtitle'> Customer Incident Reporting and Tracking</span>
-                </q-toolbar-title>
-            </q-toolbar>
-        </q-layout-footer>
-
-    </q-layout>
-
+<template name="appLayout" lang='pug'>
+  <!-- be careful when you change the 'view' prop, check the layout docs -->
+  <!--  LHr lpR lfr - with class="fixed-bottom" on the footer seems to be the only possibility
+    that works both for desktop and mobile -->
+  q-layout(ref='layout', view='LHr lpR lFr')
+    q-layout-header
+      q-toolbar(color='dark')
+        q-btn(no-ripple flat size='lg', @click='showLeft = !showLeft', icon='menu')
+        q-toolbar-title
+          | JanPro
+        q-btn(no-ripple flat size='lg' icon='mail' @click="$router.push('/mail')")
+        q-btn(no-ripple flat size='lg' , icon='account box', @click='showRight = !showRight')
+      <!--q-tabs(color='dark')-->
+      <!--  q-route-tab(slot='title', icon='save', to='/', replace='', label='PubSub')-->
+      <!--  q-route-tab(slot='title', icon='alarm', to='/session', replace='', label='Session')-->
+      <!--  q-route-tab(slot='title', icon='help', to='/help', replace='', label='Help')-->
+    q-layout-drawer(side='left', v-model='showLeft', overlay=true)
+      q-list(no-border, link='', inset-separator='')
+        <!--q-list-header Essential Links-->
+        q-item(to='/dashboard')
+          q-item-side(icon='dashboard')
+          q-item-main(label='Dashboard')
+        q-item(to='/')
+          q-item-side(icon='dns')
+          q-item-main(label='Docs')
+        <!--q-item(to='/help')-->
+        <!--  q-item-side(icon='help')-->
+        <!--  q-item-main(label='Help')-->
+      <!--q-toolbar-->
+      <!--  q-toolbar-title test section-->
+      <!--.list.no-border.platform-delimiter-->
+      <!--  q-drawer-link(icon='mail' :to="{path:'/', exact:true}") Mail-->
+    q-layout-drawer(side='right', v-model='showRight', overlay=true)
+      q-list(no-border, link='', inset-separator='')
+        q-item(to='/profile')
+          q-item-side(icon='account box')
+          q-item-main(label='Profile')
+    q-page-container
+      router-view
+    q-layout-footer
+      q-toolbar(color='dark')
+        q-icon(name='copyright')
+        q-toolbar-title
+          |JanPro
+          span(slot='subtitle')  Customer Incident Reporting and Tracking
 </template>
 
 <script>
+  //See main.js for the global import of 'Quasar' and vue.use() method.
+  //Don't move the 'Quasar' import from main.js - importing 'Quasar' later causes an error
+
+  //we've had to symlink all the material-icons material from /node-modules/quasar-extras/material-icons
+  //to /public because otherwise for some reason material-icons.css cannot find './MaterialIcons-Regular.woff'
+  // even though is in the same folder as itself
+  import '/public/material-icons';
+
+  import '/node_modules/quasar-framework/dist/umd/quasar.mat.css'
+
+  import {
+    QLayout, 
+    QToolbar, 
+    QToolbarTitle, 
+    QTabs, 
+    QTab, 
+    QRouteTab, 
+    QBtn, 
+    QIcon,
+    QItemMain, 
+    QItemSide, 
+    QList, 
+    QListHeader, 
+    QLayoutHeader, 
+    QLayoutFooter, 
+    QLayoutDrawer, 
+    QDrawerLink, 
+    QPageContainer, 
+    QItem
+  } from '/node_modules/quasar-framework/dist/quasar.mat.common.js';
 
 
 
-    //See main.js for the global import of 'Quasar' and vue.use() method.
-    //Don't move the 'Quasar' import from main.js - importing 'Quasar' later causes an error
-
-    //we've had to symlink all the material-icons material from /node-modules/quasar-extras/material-icons
-    //to /public because otherwise for some reason material-icons.css cannot find './MaterialIcons-Regular.woff'
-    // even though is in the same folder as itself
-    import '/public/material-icons';
-
-    if(Meteor.isCordova && cordova.platformId == 'ios'){
-        import('/node_modules/quasar-framework/dist/umd/quasar.ios.css');
-    }else{
-        import('/node_modules/quasar-framework/dist/umd/quasar.mat.css');
+  export default {
+    data: function () {
+      return {
+        showLeft: false,
+        showRight: false
+      }
+    },
+    props: {
+      uiid: 'mat'
+    },
+    components: {
+      QLayoutFooter,
+      QLayoutHeader,
+      QLayoutDrawer,
+      QLayout,
+      QToolbar,
+      QToolbarTitle,
+      QTabs,
+      QTab,
+      QRouteTab,
+      QBtn,
+      QIcon,
+      QItemMain, QItemSide,
+      QList, QListHeader, QPageContainer,
+      QItem,
+      QDrawerLink
     }
-
-    import {
-        QLayout, QToolbar, QToolbarTitle, QTabs, QTab, QRouteTab, QBtn, QIcon,
-        QItemMain, QItemSide, QList, QListHeader, QLayoutHeader, QLayoutFooter, QLayoutDrawer, QPageContainer, QItem
-    } from '/node_modules/quasar-framework/dist/quasar.mat.common.js';
-
-
-
-    export default {
-        data: function () {
-            return {
-                showLeft: false,
-                showRight: false
-            }
-        },
-        props: {
-            uiid: 'mat'
-        },
-        components: {
-            QLayoutFooter,
-            QLayoutHeader,
-            QLayoutDrawer,
-            QLayout,
-            QToolbar,
-            QToolbarTitle,
-            QTabs,
-            QTab,
-            QRouteTab,
-            QBtn,
-            QIcon,
-            QItemMain, QItemSide,
-            QList, QListHeader, QPageContainer,
-            QItem
-        }
-    }
+  }
 </script>

@@ -6,7 +6,7 @@
     "transpile": "mv './.babelrc.RENAMED' './.babelrc'; babel node_modules/quasar-framework/dist/quasar.ios.esm.js --out-file node_modules/quasar-framework/dist/quasar.ios.common.js; babel node_modules/quasar-framework/dist/quasar.mat.esm.js --out-file node_modules/quasar-framework/dist/quasar.mat.common.js;mv './.babelrc' './.babelrc.RENAMED'"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.38",
+    "@babel/runtime": "^7.0.0-beta.44",
     "fastclick": "^1.0.6",
     "meteor-node-stubs": "^0.3.2",
     "moment": "^2.18.1",
