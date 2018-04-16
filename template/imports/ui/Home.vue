@@ -15,16 +15,30 @@
             </q-item>
         </q-list>
         </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <q-btn color="primary" @click="add_doc()">
+                Add a doc
+            </q-btn>
+        </div>
+        <div style="margin-top: 25px;">
+        <q-list striped>
+            <q-list-header>Striped doc list</q-list-header>
+            <q-item v-for="item in docRecords" :key="item._id">
+                <q-item-main>
+                    {{ item._id }}
+                </q-item-main>
+            </q-item>
+        </q-list>
+        </div>
     </div>
 </template>
 
 <script>
     import { Meteor } from 'meteor/meteor';
-    import { Stars } from '../lib/collections';
+    import { Stars } from '/imports/lib/collections';
+    import { Docs } from '/imports/lib/collections';
 
-    //swap the Comment on these two lines if you want to compile for ios
     import { QList, QListHeader, QBtn, QItem, QItemMain } from '/node_modules/quasar-framework/dist/quasar.mat.common.js';
-    // import { QList, QListHeader, QBtn, QItem, QItemMain } from '/node_modules/quasar-framework/dist/quasar.ios.common.js';
 
 
     export default {
@@ -57,6 +71,15 @@
                     }
                     return starsFound;
                 }
+            },
+            docRecords: {
+                params() {
+                    return null;
+                },
+                update () {
+                    var docsFound = Docs.find();
+                    return docsFound;
+                }
             }
         },
         methods: {
@@ -66,6 +89,9 @@
                 }else{
                     alert('There are only five stars')
                 }
+            },
+            add_doc() {
+                Docs.insert({});
             },
             getCounter () {
                 if(this.counter >= this.starNames.length - 1){
@@ -78,6 +104,7 @@
         },
         created() {
             this.$subscribe('stars');
+            this.$subscribe('docs');
         }
     }
 

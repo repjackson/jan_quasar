@@ -16,7 +16,7 @@
                 />
 
                 <q-toolbar-title>
-                    jan2
+                    time to tear this motherfucker up
                     <!--<span slot="subtitle">Optional subtitle</span>-->
                 </q-toolbar-title>
 
@@ -28,14 +28,14 @@
                         no-ripple
                 />
             </q-toolbar>
-            <q-tabs>
+            <q-tabs color='dark'>
                 <q-route-tab slot="title" icon="save" to="/" replace label="PubSub" />
                 <q-route-tab slot="title" icon="alarm" to="/session" replace label="Session" />
                 <q-route-tab slot="title" icon="help" to="/help" replace label="Help" />
             </q-tabs>
         </q-layout-header>
 
-        <q-layout-drawer side="left" v-model="showLeft">
+        <q-layout-drawer side="left" v-model="showLeft" overlay=true>
             <q-list no-border link inset-separator>
                 <q-list-header>Essential Links</q-list-header>
                 <q-item to="/">
@@ -53,7 +53,7 @@
             </q-list>
         </q-layout-drawer>
 
-        <q-layout-drawer side="right" v-model="showRight">
+        <q-layout-drawer side="right" v-model="showRight" overlay=true>
             <span>Right Side of Layout</span>
         </q-layout-drawer>
 
@@ -62,9 +62,9 @@
         </q-page-container>
 
         <q-layout-footer>
-            <q-toolbar>
+            <q-toolbar color='dark'>
                 <q-toolbar-title>
-                    Footer is here
+                    <span slot='subtitle'> Customer Incident Reporting and Tracking</span>
                 </q-toolbar-title>
             </q-toolbar>
         </q-layout-footer>
@@ -91,15 +91,10 @@
         import('/node_modules/quasar-framework/dist/umd/quasar.mat.css');
     }
 
-    //swap the comments on these lines if you want to compile for ios
     import {
         QLayout, QToolbar, QToolbarTitle, QTabs, QTab, QRouteTab, QBtn, QIcon,
         QItemMain, QItemSide, QList, QListHeader, QLayoutHeader, QLayoutFooter, QLayoutDrawer, QPageContainer, QItem
     } from '/node_modules/quasar-framework/dist/quasar.mat.common.js';
-    // import {
-    //     QLayout, QToolbar, QToolbarTitle, QTabs, QTab, QRouteTab, QBtn, QIcon,
-    //     QItemMain, QItemSide, QList, QListHeader, QLayoutHeader, QLayoutFooter, QLayoutDrawer, QPageContainer, QItem
-    // } from '/node_modules/quasar-framework/dist/quasar.ios.common.js';
 
 
 
