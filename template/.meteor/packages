@@ -27,3 +27,8 @@ akryum:vue-component
 akryum:vue-router2
 akryum:vue-pug
 akryum:vue-coffee
+constellation:console
+constellation:subscriptions
+constellation:autopublish
+constellation:session
+accounts-password

@@ -1,11 +1,11 @@
 <template lang='pug'>
   q-card(color='dark')
+    q-card-title {{title}}
     q-card-main
-      p.text-italic {{title}}
-      h5(ref='number')
+      h5 {{total}}
 </template>
 
-<script type="text/javascript">
+<script lang="coffee">
   import CountUp from 'countup.js'
   import {       
     QCard,
@@ -17,46 +17,25 @@
     QIcon
    } from '/node_modules/quasar-framework/dist/quasar.mat.common.js'
 
-  export default {
-    name:'card_total',
-    props: ['title', 'total', 'backgroundColor', 'iconName'],
+  return
+    name:'card_total'
+    props: ['title', 'total', 'backgroundColor', 'iconName']
     components: {
-      QCard,
-      QCardTitle,
-      QCardMain,
-      QCardMedia,
-      QCardSeparator,
-      QCardActions,
+      QCard
+      QCardTitle
+      QCardMain
+      QCardMedia
+      QCardSeparator
+      QCardActions
       QIcon
-    },
-
-    mounted () {
-      this.countUp.start()
-    },
-    computed: {
-      countUp () {
-        return new CountUp(this.$refs.number, 0, this.total, 0, 2.5, this.options)
-      }
-    },
-    watch: {
-      total () {
-        this.countUp.start()
-      }
-    },
-    data () {
-      return {
-        options: {
-          separator: '.'
-        }
-      }
     }
-  }
+    mounted: -> @countUp.start()
+    computed:
+      countUp: ->
+        return new CountUp(this.$refs.number, 0, this.total, 0, 2.5, this.options)
+    watch:
+      total: -> @countUp.start()
+    data: ->
+      options:
+        separator: '.'
 </script>
-<style lang='stylus' scoped>
-  i 
-    font-size: 54px
-  .card-style
-    width 300px !important
-    margin 50px !important
-    padding 50px !important
-</style>

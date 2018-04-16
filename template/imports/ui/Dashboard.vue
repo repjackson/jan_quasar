@@ -1,5 +1,6 @@
 <template lang='pug'>
   .layout-padding
+    h4.text-center Dashboard
     .row.gutter-md.flex.wrap
       .col
         card_total(title='Total Posts', background-color='bg-teal-9', icon-name='local_post_office', :total='totalPosts')
@@ -16,33 +17,12 @@
     <!--  .width-4of5.sm-width-1of1-->
     <!--    card-todo(card-title='Generic todos', api='todos')-->
 </template>
-<script type="text/javascript">
+<script lang="coffee">
   import card_total from './cardTotal.vue'
-  export default {
-    name: 'Dashboard',
-    mounted () {
-    },
-    data () {
-      return {
-        totalPosts: 0,
-        totalComments: 0,
-        totalTodos: 0
-      }
-    },
-    computed: {
-      dataForGraph () {
-        return {
-          posts: this.totalPosts,
-          todos: this.totalTodos,
-          comments: this.totalComments
-        }
-      }
-    },
-    methods: {
-    },
-    components: {
-      card_total,
-    }
-  }
+  return
+    data: ->
+      totalPosts: 12
+      totalComments: 14
+      totalTodos: 5
+    components: { card_total }
 </script>
-<style></style>
