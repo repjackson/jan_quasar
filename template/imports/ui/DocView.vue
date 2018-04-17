@@ -11,21 +11,22 @@
 
 <script>
 // 	import BackButton from '../../../ui/components/BackButton/BackButton.vue'
-	import Docs from '/imports/lib/collections.js'
+	import {Docs} from '/imports/lib/collections.js'
   export default {
-    name: 'doc-view',
+    name: 'view-doc',
     data: () => ({
     	users: [],
     	documents: []
     }),
     meteor: {
       subscribe: {
-        'documents': [],
+        'docs': [],
       },
       users() {
         return Meteor.users.find({})
       },
       documents() {
+        console.log(this.$route.params.doc_id)
         return Docs.find({
           _id: this.$route.params.doc_id
         });

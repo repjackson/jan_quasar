@@ -10,4 +10,7 @@ export {Messages};
 const Notifications = new Mongo.Collection('notifications');
 export {Notifications};
 
+const Comments = new Mongo.Collection('comments');
+export {Comments};
+
 
