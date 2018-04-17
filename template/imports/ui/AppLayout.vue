@@ -8,6 +8,7 @@
         q-btn(no-ripple flat size='lg', @click='showLeft = !showLeft', icon='menu')
         q-toolbar-title
           | JanPro
+        q-btn(no-ripple flat size='lg' icon='notifications none' @click="$router.push('/notifications')")
         q-btn(no-ripple flat size='lg' icon='mail' @click="$router.push('/mail')")
         q-btn(no-ripple flat size='lg' , icon='account box', @click='showRight = !showRight')
       <!--q-tabs(color='dark')-->
@@ -20,16 +21,12 @@
         q-item(to='/dashboard')
           q-item-side(icon='dashboard')
           q-item-main(label='Dashboard')
-        q-item(to='/')
-          q-item-side(icon='dns')
-          q-item-main(label='Docs')
-        <!--q-item(to='/help')-->
-        <!--  q-item-side(icon='help')-->
-        <!--  q-item-main(label='Help')-->
-      <!--q-toolbar-->
-      <!--  q-toolbar-title test section-->
-      <!--.list.no-border.platform-delimiter-->
-      <!--  q-drawer-link(icon='mail' :to="{path:'/', exact:true}") Mail-->
+        q-item(to='/table')
+          q-item-side(icon='border all')
+          q-item-main(label='Table')
+        q-item(to='/list')
+          q-item-side(icon='list')
+          q-item-main(label='List')
     q-layout-drawer(side='right', v-model='showRight', overlay=true)
       q-list(no-border, link='', inset-separator='')
         q-item(to='/profile')

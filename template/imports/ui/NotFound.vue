@@ -1,15 +1,10 @@
-<template>
-<div class="not-found">
-  <div class="banner">
-    <img src="/img/droids.jpg" />
-  </div>
-  <div class="hero">
-    Not Found
-  </div>
-  <div>
-    This is not the page you are looking for. <router-link :to="{name:'home'}">Return home</router-link>
-  </div>
-</div>
+<template lang='pug'>
+  .not-found
+    .hero
+      | Not Found
+    div
+      | This is not the page you are looking for. 
+      router-link(:to="{name:'home'}") Return home
 </template>
 
 <style scoped>
